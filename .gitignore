@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+database/*.db
+*.db
+*.sqlite
+*.sqlite3
+*.pdf
+*.docx
+.vscode/
+pyrefly.toml
+.pytest_cache/
+.DS_Store
+Thumbs.db

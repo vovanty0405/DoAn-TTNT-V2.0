@@ -1,0 +1,121 @@
+{
+  "raw_rows": 1025,
+  "columns": 14,
+  "duplicates": 723,
+  "unique_rows": 302,
+  "conflicting_groups": 0,
+  "raw_target_counts": {
+    "1": 526,
+    "0": 499
+  },
+  "target_counts": {
+    "0": 164,
+    "1": 138
+  },
+  "dtypes": {
+    "age": "int64",
+    "sex": "int64",
+    "cp": "int64",
+    "trestbps": "int64",
+    "chol": "int64",
+    "fbs": "int64",
+    "restecg": "int64",
+    "thalach": "int64",
+    "exang": "int64",
+    "oldpeak": "float64",
+    "slope": "int64",
+    "ca": "int64",
+    "thal": "int64",
+    "target": "int64"
+  },
+  "raw_missing": {
+    "age": 0,
+    "sex": 0,
+    "cp": 0,
+    "trestbps": 0,
+    "chol": 0,
+    "fbs": 0,
+    "restecg": 0,
+    "thalach": 0,
+    "exang": 0,
+    "oldpeak": 0,
+    "slope": 0,
+    "ca": 0,
+    "thal": 0,
+    "target": 0
+  },
+  "special_missing_unique": {
+    "ca=4": 4,
+    "thal=0": 2
+  },
+  "ranges": {
+    "age": {
+      "min": 29,
+      "max": 77
+    },
+    "sex": {
+      "min": 0,
+      "max": 1
+    },
+    "cp": {
+      "min": 0,
+      "max": 3
+    },
+    "trestbps": {
+      "min": 94,
+      "max": 200
+    },
+    "chol": {
+      "min": 126,
+      "max": 564
+    },
+    "fbs": {
+      "min": 0,
+      "max": 1
+    },
+    "restecg": {
+      "min": 0,
+      "max": 2
+    },
+    "thalach": {
+      "min": 71,
+      "max": 202
+    },
+    "exang": {
+      "min": 0,
+      "max": 1
+    },
+    "oldpeak": {
+      "min": 0.0,
+      "max": 6.2
+    },
+    "slope": {
+      "min": 0,
+      "max": 2
+    },
+    "ca": {
+      "min": 0,
+      "max": 4
+    },
+    "thal": {
+      "min": 0,
+      "max": 3
+    },
+    "target": {
+      "min": 0,
+      "max": 1
+    }
+  },
+  "label_rule": "normalized_target = 1 - raw_target",
+  "outlier_policy": "Retain plausible extremes including chol=564; no outcome-driven deletion.",
+  "train_rows": 211,
+  "test_rows": 91,
+  "train_target_counts": {
+    "0": 115,
+    "1": 96
+  },
+  "test_target_counts": {
+    "0": 49,
+    "1": 42
+  }
+}

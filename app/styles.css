@@ -1,0 +1,251 @@
+/* HeartCare AI — Healthcare Management Dashboard Theme */
+
+:root {
+    --hc-navy: #0B3C5D;
+    --hc-blue: #1D6FA5;
+    --hc-teal: #0E9F9F;
+    --hc-bg: #F4F8FB;
+    --hc-card: #FFFFFF;
+    --hc-border: #DCE6F0;
+    --hc-text: #162B3A;
+    --hc-muted: #5A7184;
+}
+
+.stApp {
+    background-color: var(--hc-bg);
+}
+
+.block-container {
+    padding-top: 1.4rem;
+    padding-bottom: 2.5rem;
+}
+
+/* Sidebar branding */
+.hc-brand {
+    background: linear-gradient(135deg, #0B3C5D 0%, #1D6FA5 100%);
+    color: #FFFFFF;
+    padding: 1rem 1.1rem;
+    border-radius: 14px;
+    margin-bottom: 0.9rem;
+    box-shadow: 0 4px 12px rgba(11, 60, 93, 0.16);
+}
+.hc-brand-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin: 0;
+    color: #FFFFFF;
+}
+.hc-brand-sub {
+    font-size: 0.78rem;
+    color: #D7ECFA;
+    margin-top: 0.25rem;
+}
+
+/* KPI stat cards */
+.hc-kpi-card {
+    background: var(--hc-card);
+    border: 1px solid var(--hc-border);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 2px 8px rgba(11, 60, 93, 0.05);
+    margin-bottom: 0.75rem;
+}
+.hc-kpi-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+}
+.hc-kpi-label {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--hc-muted);
+}
+.hc-kpi-icon {
+    font-size: 1.25rem;
+    padding: 0.2rem 0.45rem;
+    border-radius: 10px;
+    background: #EDF5FA;
+}
+.hc-kpi-value {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--hc-navy);
+    line-height: 1.2;
+}
+.hc-kpi-sub {
+    font-size: 0.76rem;
+    color: var(--hc-muted);
+    margin-top: 0.25rem;
+}
+
+/* Health parameter cards on Patient Detail */
+.hc-health-card {
+    background: var(--hc-card);
+    border: 1px solid var(--hc-border);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    box-shadow: 0 2px 6px rgba(11, 60, 93, 0.04);
+    margin-bottom: 0.65rem;
+}
+.hc-health-label {
+    font-size: 0.8rem;
+    color: var(--hc-muted);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+.hc-health-value {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--hc-text);
+}
+
+/* Section banner */
+.hc-header {
+    margin-bottom: 1rem;
+}
+.hc-header h1 {
+    color: var(--hc-navy);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+}
+.hc-header p {
+    color: var(--hc-muted);
+    font-size: 0.92rem;
+    margin: 0;
+}
+
+/* Result highlight box */
+.hc-result-box {
+    background: #FFFFFF;
+    border: 1px solid var(--hc-border);
+    border-left: 6px solid #1D6FA5;
+    border-radius: 14px;
+    padding: 1.15rem 1.3rem;
+    box-shadow: 0 3px 10px rgba(11, 60, 93, 0.07);
+    margin: 0.75rem 0 1rem 0;
+}
+
+/* Compact Patient Profile Card */
+.hc-profile-card {
+    background: #FFFFFF;
+    border: 1px solid var(--hc-border);
+    border-radius: 14px;
+    padding: 1.15rem 1.35rem;
+    box-shadow: 0 2px 10px rgba(11, 60, 93, 0.05);
+    margin: 0.5rem 0 1rem 0;
+}
+.hc-profile-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #E8F0F6;
+    margin-bottom: 0.85rem;
+}
+.hc-profile-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+.hc-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0B3C5D 0%, #1D6FA5 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+.hc-profile-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--hc-navy);
+    margin: 0;
+    line-height: 1.25;
+}
+.hc-profile-code {
+    font-size: 0.82rem;
+    color: var(--hc-muted);
+    margin-top: 2px;
+}
+.hc-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.7rem 1.2rem;
+}
+.hc-profile-item-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--hc-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.hc-profile-item-val {
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: var(--hc-text);
+    margin-top: 2px;
+}
+
+/* Badges */
+.hc-badge {
+    display: inline-block;
+    padding: 0.22rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.hc-badge-green { background: #E6F7F0; color: #16794C; }
+.hc-badge-red { background: #FDECEC; color: #B42318; }
+.hc-badge-blue { background: #E8F3FB; color: #0B5394; }
+.hc-badge-gray { background: #EEF2F6; color: #475467; }
+
+/* Modern Styled HTML Table */
+.hc-table-wrap {
+    background: #FFFFFF;
+    border: 1px solid var(--hc-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(11, 60, 93, 0.04);
+    margin: 0.4rem 0 1rem 0;
+    overflow-x: auto;
+}
+.hc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.89rem;
+    color: var(--hc-text);
+}
+.hc-table thead th {
+    background: #0B3C5D;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.83rem;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+.hc-table tbody td {
+    padding: 0.6rem 0.85rem;
+    border-bottom: 1px solid #EDF2F7;
+    vertical-align: middle;
+}
+.hc-table tbody tr:nth-child(even) {
+    background: #F9FCFE;
+}
+.hc-table tbody tr:hover {
+    background: #EEF6FC;
+}
+.hc-table tbody tr:last-child td {
+    border-bottom: none;
+}

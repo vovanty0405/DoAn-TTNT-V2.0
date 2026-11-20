@@ -1,0 +1,44 @@
+[
+  {
+    "source_row": 331,
+    "true_label": 1,
+    "features": {
+      "age": 63.0,
+      "sex": 0.0,
+      "cp": 0.0,
+      "trestbps": 108.0,
+      "chol": 269.0,
+      "fbs": 0.0,
+      "restecg": 1.0,
+      "thalach": 169.0,
+      "exang": 1.0,
+      "oldpeak": 1.8,
+      "slope": 1.0,
+      "ca": 2.0,
+      "thal": 2.0
+    },
+    "prediction": 1,
+    "disease_score": 0.7185399877899877
+  },
+  {
+    "source_row": 158,
+    "true_label": 0,
+    "features": {
+      "age": 67.0,
+      "sex": 0.0,
+      "cp": 2.0,
+      "trestbps": 115.0,
+      "chol": 564.0,
+      "fbs": 0.0,
+      "restecg": 0.0,
+      "thalach": 160.0,
+      "exang": 0.0,
+      "oldpeak": 1.6,
+      "slope": 1.0,
+      "ca": 0.0,
+      "thal": 3.0
+    },
+    "prediction": 0,
+    "disease_score": 0.4363488455988457
+  }
+]

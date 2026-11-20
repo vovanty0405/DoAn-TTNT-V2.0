@@ -1,0 +1,182 @@
+{
+  "selected_model": "Random Forest",
+  "selection_rule": "Highest mean F1 in Stratified 5-fold CV on Train; alphabetical tie-break. Default classification threshold.",
+  "cv_caveat": "Tuned CV reuses search folds and may be optimistic. Test is independent. No nested CV.",
+  "random_state": 42,
+  "models": {
+    "Decision Tree": {
+      "best_params": {
+        "model__criterion": "gini",
+        "model__max_depth": 4,
+        "model__min_samples_leaf": 1,
+        "model__min_samples_split": 2
+      },
+      "baseline_params": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "entropy",
+        "max_depth": 4,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 42,
+        "splitter": "best"
+      },
+      "search_candidates": 32,
+      "test": {
+        "accuracy": 0.7582417582417582,
+        "precision": 0.7777777777777778,
+        "recall": 0.6666666666666666,
+        "f1": 0.717948717948718,
+        "roc_auc": 0.7427113702623908,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            14,
+            28
+          ]
+        ]
+      },
+      "baseline_test": {
+        "accuracy": 0.7692307692307693,
+        "precision": 0.7560975609756098,
+        "recall": 0.7380952380952381,
+        "f1": 0.7469879518072289,
+        "roc_auc": 0.8182701652089406,
+        "confusion_matrix": [
+          [
+            39,
+            10
+          ],
+          [
+            11,
+            31
+          ]
+        ]
+      }
+    },
+    "Random Forest": {
+      "best_params": {
+        "model__max_depth": null,
+        "model__max_features": "sqrt",
+        "model__min_samples_leaf": 3,
+        "model__min_samples_split": 2,
+        "model__n_estimators": 100
+      },
+      "baseline_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 5,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "search_candidates": 48,
+      "test": {
+        "accuracy": 0.8131868131868132,
+        "precision": 0.8048780487804879,
+        "recall": 0.7857142857142857,
+        "f1": 0.7951807228915663,
+        "roc_auc": 0.8853255587949466,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            9,
+            33
+          ]
+        ]
+      },
+      "baseline_test": {
+        "accuracy": 0.8461538461538461,
+        "precision": 0.868421052631579,
+        "recall": 0.7857142857142857,
+        "f1": 0.825,
+        "roc_auc": 0.8906705539358601,
+        "confusion_matrix": [
+          [
+            44,
+            5
+          ],
+          [
+            9,
+            33
+          ]
+        ]
+      }
+    },
+    "Gaussian NB": {
+      "best_params": {
+        "model__var_smoothing": 0.1
+      },
+      "baseline_params": {
+        "priors": null,
+        "var_smoothing": 1e-09
+      },
+      "search_candidates": 6,
+      "test": {
+        "accuracy": 0.8131868131868132,
+        "precision": 0.8378378378378378,
+        "recall": 0.7380952380952381,
+        "f1": 0.7848101265822784,
+        "roc_auc": 0.9062196307094266,
+        "confusion_matrix": [
+          [
+            43,
+            6
+          ],
+          [
+            11,
+            31
+          ]
+        ]
+      },
+      "baseline_test": {
+        "accuracy": 0.8021978021978022,
+        "precision": 0.8157894736842105,
+        "recall": 0.7380952380952381,
+        "f1": 0.775,
+        "roc_auc": 0.8882410106899903,
+        "confusion_matrix": [
+          [
+            42,
+            7
+          ],
+          [
+            11,
+            31
+          ]
+        ]
+      }
+    }
+  },
+  "dataset_sha256": "ddb2996b2f4db2e00aad13f4518200179ff69f79093838e3c21ffa672ebec0f1",
+  "versions": {
+    "python": "3.13.7",
+    "sklearn": "1.9.1",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4"
+  }
+}
