@@ -3,30 +3,19 @@
 import sys
 from pathlib import Path
 
-# Ensure project root and app directory are in sys.path
+# Ensure project root and app directory are in sys.path (PROJECT_ROOT first, APP_DIR second)
 APP_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = APP_DIR.parent
 
-for p in (PROJECT_ROOT, APP_DIR):
-    if str(p) not in sys.path:
-        sys.path.insert(0, str(p))
-
-# Fix Streamlit module conflict when running `streamlit run app/app.py`
-if "app" in sys.modules and not hasattr(sys.modules["app"], "__path__"):
-    sys.modules["app"].__path__ = [str(APP_DIR)]
+for p in (APP_DIR, PROJECT_ROOT):
+    p_str = str(p)
+    if p_str in sys.path:
+        sys.path.remove(p_str)
+    sys.path.insert(0, p_str)
 
 import streamlit as st
 
-try:
-    from app.components.state import (
-        artifacts_ready,
-        get_experiment_and_models,
-    )
-except ModuleNotFoundError:
-    from components.state import (
-        artifacts_ready,
-        get_experiment_and_models,
-    )
+from components.state import artifacts_ready, get_experiment_and_models
 from database.db import init_db, register_current_models
 
 st.set_page_config(

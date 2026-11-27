@@ -7,10 +7,7 @@ from datetime import date
 import pandas as pd
 import streamlit as st
 
-try:
-    from app.components.ui import format_feature_value, render_page_header, render_styled_table
-except ModuleNotFoundError:
-    from components.ui import format_feature_value, render_page_header, render_styled_table
+from components.ui import format_feature_value, render_page_header, render_styled_table
 from database.prediction_repository import get_prediction_by_id, query_predictions
 from services.excel_export_service import export_predictions_to_excel
 from src.config import FEATURE_LABELS, FEATURES, MODEL_FILES

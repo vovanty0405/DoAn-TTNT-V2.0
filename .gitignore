@@ -15,3 +15,10 @@ pyrefly.toml
 .pytest_cache/
 .DS_Store
 Thumbs.db
+
+# Documentation & Markdown files (keep README.md)
+docs/
+*.md
+!README.md
+!**/README.md
+

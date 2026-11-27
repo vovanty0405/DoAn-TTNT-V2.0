@@ -5,24 +5,14 @@ from datetime import datetime
 
 import streamlit as st
 
-try:
-    from app.components.ui import (
-        format_feature_value,
-        render_disclaimer_banner,
-        render_health_card,
-        render_page_header,
-        render_patient_profile_card,
-        render_styled_table,
-    )
-except ModuleNotFoundError:
-    from components.ui import (
-        format_feature_value,
-        render_disclaimer_banner,
-        render_health_card,
-        render_page_header,
-        render_patient_profile_card,
-        render_styled_table,
-    )
+from components.ui import (
+    format_feature_value,
+    render_disclaimer_banner,
+    render_health_card,
+    render_page_header,
+    render_patient_profile_card,
+    render_styled_table,
+)
 from database.patient_repository import get_patient_by_id, update_patient
 from database.prediction_repository import get_predictions_for_patient
 from services.excel_export_service import export_predictions_to_excel

@@ -5,12 +5,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-try:
-    from app.components.state import get_evaluation_artifacts, get_experiment_and_models
-    from app.components.ui import render_kpi_card, render_page_header
-except ModuleNotFoundError:
-    from components.state import get_evaluation_artifacts, get_experiment_and_models
-    from components.ui import render_kpi_card, render_page_header
+from components.state import get_evaluation_artifacts, get_experiment_and_models
+from components.ui import render_kpi_card, render_page_header
 from services.pdf_export_service import build_model_comparison_pdf
 from src.evaluate_models import get_figure_path, list_available_figures
 

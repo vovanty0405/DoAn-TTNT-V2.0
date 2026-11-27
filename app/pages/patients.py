@@ -5,10 +5,7 @@ from datetime import date, datetime
 
 import streamlit as st
 
-try:
-    from app.components.ui import compute_age, render_page_header
-except ModuleNotFoundError:
-    from components.ui import compute_age, render_page_header
+from components.ui import compute_age, render_page_header, render_styled_table
 from database.patient_repository import (
     create_patient,
     generate_patient_code,
@@ -19,13 +16,15 @@ from database.patient_repository import (
     update_patient,
 )
 from services.excel_export_service import export_patients_to_excel
+from services.excel_import_service import (
+    build_patient_import_template,
+    commit_imported_patients,
+    parse_patients_excel,
+)
 
 # If a patient was selected via "Xem chi tiết", render the Detail view inline
 if st.session_state.get("selected_patient_id"):
-    try:
-        from app.pages.patient_detail import render_patient_detail_view
-    except ModuleNotFoundError:
-        from pages.patient_detail import render_patient_detail_view
+    from pages.patient_detail import render_patient_detail_view
     render_patient_detail_view(int(st.session_state["selected_patient_id"]))
     st.stop()
 
@@ -72,6 +71,94 @@ with st.expander("➕ Thêm hồ sơ bệnh nhân mới", expanded=False):
                     st.rerun()
                 except Exception as exc:
                     st.error(f"Không thể thêm bệnh nhân: {exc}")
+
+# --- Import Patients from Excel (Preview & Confirm) ---
+with st.expander("📤 Nhập danh sách bệnh nhân từ Excel (Xem trước & Xác nhận)", expanded=False):
+    st.caption(
+        "Hỗ trợ file `.xlsx` theo mẫu bên dưới hoặc file xuất từ chính HeartCare AI. "
+        "Dữ liệu sẽ được kiểm tra và hiển thị xem trước; chỉ khi bấm **Xác nhận nhập** mới lưu thật vào SQLite."
+    )
+    st.download_button(
+        "📄 Tải file Excel mẫu (.xlsx)",
+        data=build_patient_import_template(),
+        file_name="heartcare_mau_nhap_benh_nhan.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        key="btn_download_import_template",
+    )
+
+    if "excel_upload_nonce" not in st.session_state:
+        st.session_state["excel_upload_nonce"] = 0
+
+    uploaded_file = st.file_uploader(
+        "Chọn file Excel (.xlsx) cần nhập",
+        type=["xlsx"],
+        key=f"patients_excel_uploader_{st.session_state['excel_upload_nonce']}",
+    )
+
+    if uploaded_file is not None:
+        try:
+            valid_rows, error_rows = parse_patients_excel(uploaded_file.getvalue())
+            m1, m2, m3 = st.columns(3)
+            m1.metric("Tổng dòng đọc được", len(valid_rows) + len(error_rows))
+            m2.metric("Hợp lệ (sẵn sàng nhập)", len(valid_rows))
+            m3.metric("Lỗi / trùng (bỏ qua)", len(error_rows))
+
+            if valid_rows:
+                st.markdown("**Xem trước danh sách hồ sơ hợp lệ sẽ được nhập:**")
+                render_styled_table(
+                    ["Dòng Excel", "Mã BN", "Họ và tên", "Năm sinh", "Giới tính", "Điện thoại", "Địa chỉ"],
+                    [
+                        [
+                            r["excel_row"],
+                            r["patient_code"] or "(Tự sinh)",
+                            r["full_name"],
+                            r["birth_year"] if r["birth_year"] is not None else "—",
+                            r["gender"],
+                            r["phone"] or "—",
+                            r["address"] or "—",
+                        ]
+                        for r in valid_rows
+                    ],
+                )
+            else:
+                st.warning("Không có dòng hợp lệ nào để nhập từ file này.")
+
+            if error_rows:
+                with st.expander(f"⚠️ Xem {len(error_rows)} dòng bị bỏ qua do lỗi / trùng mã"):
+                    render_styled_table(
+                        ["Dòng Excel", "Mã BN", "Họ và tên", "Lý do bỏ qua"],
+                        [
+                            [
+                                e["excel_row"],
+                                e["patient_code"] or "—",
+                                e["full_name"] or "—",
+                                e["reason"],
+                            ]
+                            for e in error_rows
+                        ],
+                    )
+
+            ib1, ib2, _ = st.columns([1.8, 1.2, 4])
+            if ib1.button(
+                f"✅ Xác nhận nhập {len(valid_rows)} hồ sơ",
+                type="primary",
+                disabled=len(valid_rows) == 0,
+                key="btn_confirm_excel_import",
+            ):
+                count_inserted = commit_imported_patients(valid_rows)
+                st.session_state["excel_upload_nonce"] += 1
+                st.session_state["excel_import_success_msg"] = (
+                    f"Đã nhập thành công **{count_inserted}** hồ sơ bệnh nhân từ Excel vào SQLite."
+                )
+                st.rerun()
+            if ib2.button("❌ Hủy nhập", key="btn_cancel_excel_import"):
+                st.session_state["excel_upload_nonce"] += 1
+                st.rerun()
+        except Exception as exc:
+            st.error(f"Không thể đọc file Excel: {exc}")
+
+if st.session_state.get("excel_import_success_msg"):
+    st.success(st.session_state.pop("excel_import_success_msg"))
 
 # --- Edit Patient Panel (if triggered) ---
 edit_id = st.session_state.get("edit_patient_id")

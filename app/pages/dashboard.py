@@ -7,20 +7,12 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-try:
-    from app.components.ui import (
-        render_disclaimer_banner,
-        render_kpi_card,
-        render_page_header,
-        render_styled_table,
-    )
-except ModuleNotFoundError:
-    from components.ui import (
-        render_disclaimer_banner,
-        render_kpi_card,
-        render_page_header,
-        render_styled_table,
-    )
+from components.ui import (
+    render_disclaimer_banner,
+    render_kpi_card,
+    render_page_header,
+    render_styled_table,
+)
 from database.patient_repository import get_patient_stats
 from database.prediction_repository import get_dashboard_prediction_stats
 

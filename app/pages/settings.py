@@ -8,12 +8,8 @@ import pandas as pd
 import sklearn
 import streamlit as st
 
-try:
-    from app.components.state import get_experiment_and_models
-    from app.components.ui import render_page_header
-except ModuleNotFoundError:
-    from components.state import get_experiment_and_models
-    from components.ui import render_page_header
+from components.state import get_experiment_and_models
+from components.ui import render_page_header
 from src.config import DB_PATH, FIGURES_DIR, MODEL_RESULTS_DIR, MODELS_DIR
 
 render_page_header(
